@@ -4,32 +4,7 @@
 
 **Which term took this conjunction to zero?**
 
-Weakest-link over a decomposition where any term at its floor collapses the whole. No product, no score, and a measured floor stays distinct from an unmeasured term.
-
-## Scope
-
-One problem. This package answers the question above and nothing adjacent to it.
-If a change here would also need a second question answered, it belongs in a
-different repository.
-
-## Where it sits
-
-```
-grammar ──▶ versum ──▶ solver ──▶ loomground-collapse
-```
-
-Above the reasoning kernel, never beside it. It uses `loomground-solver`'s shared
-three-valued verdict, its OPEN-dominant strict-AND fold, and its injected ports —
-and reaches into no solver internals. Nothing in the kernel imports this package,
-and nothing here imports governance, a corpus, or a domain.
-
-## Contract
-
-The package **reports**; it resolves nothing and decides nothing. Judgements
-arrive already made, from whoever can be held to them, and are compared rather
-than derived. Where a term is absent it escalates rather than passing: an
-unmeasured input is not the same as a satisfied one, and the two never collapse
-into a single value.
+Identifies the limiting term in a fail-closed conjunction.
 
 ## Install
 
@@ -37,6 +12,30 @@ into a single value.
 pip install loomground-collapse
 ```
 
-## Licence
+## Usage
 
-Apache-2.0 for the code; CC-BY-4.0 for the prose in this README. See `NOTICE`.
+```python
+from loomground_collapse import Constituent, ConstituentState, collapse
+out = collapse([Constituent("authority", ConstituentState.PRESENT),
+                Constituent("timeliness", ConstituentState.AT_FLOOR)])
+out.overall, out.issues
+```
+
+## Interface
+
+- input: `Constituent(name, state, note)` · `ConstituentState`: `PRESENT` · `AT_FLOOR` · `UNASSIGNED`
+- mapping `state_to_verdict`: `PRESENT → SATISFIED` · `AT_FLOOR → NOT_SATISFIED` · `UNASSIGNED → OPEN`
+- output: `IssueAggregate(overall: Verdict, issues: (name, Verdict))`, weakest-link fold
+- from solver: `cross_subsumption.Verdict` · `issue_aggregation.aggregate_issues`
+
+## Family
+
+Diagnostic operator; consumes `loomground-solver` 0.5; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-collapse`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
+
+## Status
+
+0.1.0 · 14 tests · Python >=3.10 · solver 0.5
+
+## License
+
+Apache-2.0 `LICENSES/Apache-2.0.txt` (code) · CC-BY-4.0 `LICENSES/CC-BY-4.0.txt` (README) · `NOTICE`
