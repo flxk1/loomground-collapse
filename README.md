@@ -6,6 +6,10 @@
 
 Identifies the limiting term in a fail-closed conjunction.
 
+## Problem
+
+A failed conjunction reports "failed"; the failing term is hidden. Names the term that took it to zero.
+
 ## Install
 
 ```
@@ -17,8 +21,17 @@ pip install loomground-collapse
 ```python
 from loomground_collapse import Constituent, ConstituentState, collapse
 out = collapse([Constituent("authority", ConstituentState.PRESENT),
-                Constituent("timeliness", ConstituentState.AT_FLOOR)])
+                Constituent("timeliness", ConstituentState.AT_FLOOR),
+                Constituent("consent", ConstituentState.UNASSIGNED)])
 out.overall, out.issues
+```
+
+## Example
+
+```
+in : authority PRESENT · timeliness AT_FLOOR · consent UNASSIGNED
+out: Verdict.OPEN
+     (('authority', <Verdict.SATISFIED: 'satisfied'>), ('timeliness', <Verdict.NOT_SATISFIED: 'not_satisfied'>), ('consent', <Verdict.OPEN: 'open'>))
 ```
 
 ## Interface
