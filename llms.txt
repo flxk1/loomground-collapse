@@ -1,0 +1,31 @@
+# loomground-collapse
+
+> Identifies the limiting term in a fail-closed conjunction.
+
+## Problem
+A failed conjunction reports "failed"; the failing term is hidden. Names the term that took it to zero.
+
+## Install
+```
+pip install loomground-collapse
+```
+
+## Usage
+```python
+from loomground_collapse import Constituent, ConstituentState, collapse
+out = collapse([Constituent("authority", ConstituentState.PRESENT),
+                Constituent("timeliness", ConstituentState.AT_FLOOR),
+                Constituent("consent", ConstituentState.UNASSIGNED)])
+out.overall, out.issues
+```
+
+## Interface
+- input: `Constituent(name, state, note)` · `ConstituentState`: `PRESENT` · `AT_FLOOR` · `UNASSIGNED`
+- mapping `state_to_verdict`: `PRESENT → SATISFIED` · `AT_FLOOR → NOT_SATISFIED` · `UNASSIGNED → OPEN`
+- output: `IssueAggregate(overall: Verdict, issues: (name, Verdict))`, weakest-link fold
+- from solver: `cross_subsumption.Verdict` · `issue_aggregation.aggregate_issues`
+
+## Family
+Diagnostic operator; consumes `loomground-solver` 0.5; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-collapse`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
+
+Language: loomground — guide https://github.com/flxk1/loomground/blob/main/llms.txt (the .lg language an agent reads, emits, validates); catalogue https://github.com/flxk1/loomground/blob/main/CATALOGUE.json
