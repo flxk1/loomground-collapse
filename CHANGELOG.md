@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/flxk1/loomground-collapse/compare/loomground-collapse-v0.2.0...loomground-collapse-v0.2.1) (2026-09-12)
+
+
+### Bug Fixes
+
+* release version source (extra-files marker), 0.2.0 ([ad3bc10](https://github.com/flxk1/loomground-collapse/commit/ad3bc10fdf247b07bbee71d52aafdb3836ad672c))
+
 ## [0.2.0](https://github.com/flxk1/loomground-collapse/compare/loomground-collapse-v0.1.0...loomground-collapse-v0.2.0) (2026-09-11)
 
 
