@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.1](https://github.com/flxk1/loomground-collapse/compare/loomground-collapse-v0.2.0...loomground-collapse-v0.2.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* release version source (extra-files marker), 0.2.0 ([a0793e4](https://github.com/flxk1/loomground-collapse/commit/a0793e4b98ab3cdd791d8b237b24179997ecea61))
+
+
+### Documentation
+
+* correct stale claims; add How this is made ([efe9e5c](https://github.com/flxk1/loomground-collapse/commit/efe9e5c72970e159792e3a447a0520500d18bb7a))
+* correct stale statements and add How this is made ([60816a9](https://github.com/flxk1/loomground-collapse/commit/60816a9dff26f7cf798d8b2e2c8f0b1e507f9824))
+* How this is made names no model vendor ([33188b2](https://github.com/flxk1/loomground-collapse/commit/33188b2dbfbabb5e5a58149e17cbb5d96a53447b))
+
 ## [0.2.0](https://github.com/flxk1/loomground-collapse/compare/loomground-collapse-v0.1.0...loomground-collapse-v0.2.0) (2026-09-11)
 
 
